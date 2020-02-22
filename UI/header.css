@@ -1,0 +1,28 @@
+/* header CSS */
+header {
+  background: #b1fdec;
+  font-size: 1.4rem;
+}
+
+header * {
+  max-height: 20vh;
+}
+
+.header-fixed {
+  padding: 0 4%;
+  padding-top: 0.5%;
+}
+
+.header-fixed a img{
+  max-width: 20vw;
+}
+
+.header-right {
+  width: 30%;
+}
+
+.header-right * {
+  margin: 5%;
+  display: inline-block;
+}
+/*header end*/
