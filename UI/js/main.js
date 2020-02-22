@@ -23,7 +23,6 @@ function createIssue(issue) {
   return issueContainer;
 }
 
-
 function initIssues(pipelineContainer, issues) {
   if (issues == undefined) return;
 
@@ -37,21 +36,12 @@ function createPipeline(pipeline) {
   
   var pipelineNameElement = createElement('div', 'pipeline-name', pipeline.name)
   pipelineContainer.appendChild(pipelineNameElement)
-
-  // pipeline.issues.map(function(issue) {
-  //   var issueContainerElement = createElement('div', 'issue');
-  //   var issueTitleElement = createElement('div', 'issue-title', issue.title);
-
-  //   issueContainerElement.appendChild(issueTitleElement);
-  // });
-
+  
   initIssues(pipelineContainer, pipeline.issues);
-
   return pipelineContainer;
 }
 
 function initPipelines(board) {
-  // console.log("Board pipelines", board.pipelines);
   var pipelinesContainer = document.getElementsByClassName('pipelines-container')[0];
   
   board.pipelines.forEach(function (pipeline) {
