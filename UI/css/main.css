@@ -1,0 +1,75 @@
+body {
+  font-family: sans-serif;
+  font-size:  16px;;
+}
+
+.container {
+  margin: 0 50px;
+}
+
+.pipelines-container {
+  display: flex;
+  overflow-x: scroll;
+}
+
+.pipeline {
+  border: 1px solid #ddd;
+  min-width: 250px;
+  height: 570px;
+  margin-right: 10px;
+  background-color: #f5f5f5;
+}
+
+.pipeline:last-child {
+  border: 1px dashed #ddd;
+  background-color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.pipeline-name {
+  font-size: 16px;
+  font-weight: bold;
+  text-align: center;
+  border-bottom: 1px solid #ddd;
+  padding: 10px;
+  margin-bottom: 15px;
+}
+
+.pipeline:last-child .pipeline-name {
+  border-bottom: none;
+  color: #ddd;
+}
+
+.pipeline:last-child .pipeline-name:before {
+  content: "+";
+  position: relative;
+  left: 75px;
+  top: -20px;
+  font-size: 23px;
+}
+
+/* Issue */
+.issue {
+  border: 1px solid #e8e8e8;
+  margin: 5px;
+  padding: 10px;
+  background-color: #fff;
+}
+
+.issue-title {
+  font-size: 18px;
+  margin-bottom: 5px;
+}
+
+.issue-description {
+  font-size: 14px;
+  color: #848484;
+  margin-bottom: 5px;
+}
+
+.issue-assignee {
+  font-size: 14px;
+  color: #848484;
+}
