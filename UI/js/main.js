@@ -11,6 +11,13 @@ function createElement(tag, className, innerText) {
 
 function createIssue(issue) {
   var issueContainer = createElement('div', 'issue');
+  issueContainer.setAttribute("id", issue.id);
+  issueContainer.setAttribute("draggable", true);
+
+  issueContainer.addEventListener('dragstart', function(ev) {
+    ev.dataTransfer.setData('application/my-issue', ev.target.id);
+    ev.dataTransfer.dropEffect = "move";
+  });
 
   var issueTitleElement = createElement('div', 'issue-title', issue.title);
   var issueDescriptionElement = createElement('div', 'issue-description', issue.description);
@@ -33,6 +40,17 @@ function initIssues(pipelineContainer, issues) {
 
 function createPipeline(pipeline) {
   var pipelineContainer = createElement('div', 'pipeline');
+
+  pipelineContainer.addEventListener('dragover', function (ev) {
+    ev.preventDefault();
+  });
+
+  pipelineContainer.addEventListener('drop', function (ev) {
+    ev.preventDefault();
+    
+    const data = ev.dataTransfer.getData('application/my-issue');
+    ev.target.appendChild(document.getElementById(data));
+  });
   
   var pipelineNameElement = createElement('div', 'pipeline-name', pipeline.name)
   pipelineContainer.appendChild(pipelineNameElement)
@@ -68,16 +86,19 @@ window.onload = function () {
         name: 'New',
         issues: [
           {
+            id: 1,
             title: "First Task",
             description: "This is some description",
             assignee: 'Rajdeep Mandrekar'
           },
           {
+            id: 2,
             title: "Second Task with a very long title",
             description: "This is some description again",
             assignee: 'Anamay Saxena'
           },
           {
+            id: 3,
             title: "Third Task",
             description: "This is some description",
             assignee: 'Wolfgang Furtado'
@@ -88,6 +109,7 @@ window.onload = function () {
         name: 'In Progress',
         issues: [
           {
+            id: 4,
             title: "This Task is in progress",
             description: "This is some description",
             assignee: 'Rajdeep Mandrekar'
@@ -102,6 +124,7 @@ window.onload = function () {
         name: 'Done',
         issues: [
           {
+            id: 5,
             title: "First Completed Task",
             description: "This is some description",
             assignee: 'Rajdeep Mandrekar'
@@ -113,6 +136,6 @@ window.onload = function () {
 
   var b = new Board(boardJson);
   b.pipelines = boardJson.pipelines;
-  console.log("board pipelines", b.pipelines);
+  // console.log("board pipelines", b.pipelines);
   initBoard(b);
 }
