@@ -51,12 +51,21 @@ body {
 }
 
 /* Issue */
+.issues-container {
+  height: 100%;
+  /* padding-top: 100px; */
+}
+
 .issue {
   border: 1px solid #e8e8e8;
   margin: 5px;
   padding: 10px;
   background-color: #fff;
 }
+
+/* .issues-container .issue:first-child {
+  margin-top: 100px;
+} */
 
 .issue-title {
   font-size: 18px;

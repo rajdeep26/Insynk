@@ -30,27 +30,33 @@ function createIssue(issue) {
   return issueContainer;
 }
 
+function createDropZone(container) {
+  container.addEventListener('dragover', function (ev) {
+    ev.preventDefault();
+  });
+
+  container.addEventListener('drop', function (ev) {
+    ev.preventDefault();
+
+    const data = ev.dataTransfer.getData('application/my-issue');
+    ev.target.appendChild(document.getElementById(data));
+  });
+}
+
 function initIssues(pipelineContainer, issues) {
+  var issuesContainer = createElement('div', 'issues-container');
+  createDropZone(issuesContainer);
+  pipelineContainer.appendChild(issuesContainer);
+
   if (issues == undefined) return;
 
   issues.map(function(issue) {
-    pipelineContainer.appendChild(createIssue(issue));
+    issuesContainer.appendChild(createIssue(issue));
   });
 }
 
 function createPipeline(pipeline) {
   var pipelineContainer = createElement('div', 'pipeline');
-
-  pipelineContainer.addEventListener('dragover', function (ev) {
-    ev.preventDefault();
-  });
-
-  pipelineContainer.addEventListener('drop', function (ev) {
-    ev.preventDefault();
-    
-    const data = ev.dataTransfer.getData('application/my-issue');
-    ev.target.appendChild(document.getElementById(data));
-  });
   
   var pipelineNameElement = createElement('div', 'pipeline-name', pipeline.name)
   pipelineContainer.appendChild(pipelineNameElement)
